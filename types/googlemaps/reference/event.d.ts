@@ -1,8 +1,8 @@
 declare namespace google.maps {
     namespace event {
         /**
-         * Cross browser event handler registration. This listener is removed by calling removeListener(handle) for the
-         * handle that is returned by this function.
+         * Cross browser event handler registration. This listener is removed by calling {@link removeListener}(handle)
+         * for the handle that is returned by this function.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#event.addDomListener Maps JavaScript API}
          */
         function addDomListener(
@@ -13,7 +13,7 @@ declare namespace google.maps {
         ): MapsEventListener;
 
         /**
-         * Wrapper around addDomListener that removes the listener after the first event.
+         * Wrapper around {@link addDomListener} that removes the listener after the first event.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#event.addDomListenerOnce Maps JavaScript API}
          */
         function addDomListenerOnce(
@@ -25,13 +25,13 @@ declare namespace google.maps {
 
         /**
          * Adds the given listener function to the given event name for the given object instance. Returns an identifier
-         * for this listener that can be used with removeListener().
+         * for this listener that can be used with {@link removeListener}().
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#event.addListener Maps JavaScript API}
          */
         function addListener(instance: object, eventName: string, handler: (...args: any[]) => void): MapsEventListener;
 
         /**
-         * Like addListener, but the handler removes itself after handling the first event.
+         * Like {@link addListener}, but the handler removes itself after handling the first event.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#event.addListenerOnce Maps JavaScript API}
          */
         function addListenerOnce(
@@ -54,7 +54,7 @@ declare namespace google.maps {
 
         /**
          * Removes the given listener, which should have been returned by addListener above. Equivalent to calling
-         * listener.remove().
+         * listener.{@link MapsEventListener#remove remove}().
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#event.removeListener Maps JavaScript API}
          */
         function removeListener(listener: MapsEventListener): void;
@@ -67,12 +67,12 @@ declare namespace google.maps {
     }
 
     /**
-     * An event listener, created by google.maps.event.addListener() and friends.
+     * An event listener, created by {@link google.maps.event.addListener}() and friends.
      * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MapsEventListener Maps JavaScript API}
      */
     interface MapsEventListener {
         /**
-         * Calling listener.remove() is equivalent to google.maps.event.removeListener(listener).
+         * Calling `listener.remove()` is equivalent to {@link google.maps.event.removeListener}(listener).
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MapsEventListener.remove Maps JavaScript API}
          */
         remove(): void;
@@ -81,9 +81,9 @@ declare namespace google.maps {
     type MVCEventHandler<T extends MVCObject, A extends any[]> = (this: T, ...args: A) => void;
 
     /**
-     * The MVCObject constructor is guaranteed to be an empty function, and so you may inherit from MVCObject by simply
-     * writing MySubclass.prototype = new google.maps.MVCObject();. Unless otherwise noted, this is not true of other
-     * classes in the API, and inheriting from other classes in the API is not supported.
+     * The `MVCObject` constructor is guaranteed to be an empty function, and so you may inherit from MVCObject by
+     * simply writing `MySubclass.prototype = new google.maps.MVCObject();`. Unless otherwise noted, this is not true of
+     * other classes in the API, and inheriting from other classes in the API is not supported.
      * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject Maps JavaScript API}
      */
     class MVCObject {
@@ -94,7 +94,7 @@ declare namespace google.maps {
 
         /**
          * Adds the given listener function to the given event name. Returns an identifier for this listener that can be
-         * used with google.maps.event.removeListener.
+         * used with {@link google.maps.event.removeListener}.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.addListener Maps JavaScript API}
          */
         addListener(eventName: string, handler: MVCEventHandler<this, any[]>): MapsEventListener;
@@ -146,21 +146,22 @@ declare namespace google.maps {
 
     interface MVCArrayHandlerMap<T> {
         /**
-         * This event is fired when insertAt() is called. The event passes the index that was passed to insertAt().
+         * This event is fired when insertAt() is called. The event passes the index that was passed to
+         * {@link MVCArray#insertAt insertAt}().
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.insert_at Maps JavaScript API}
          */
         insert_at: [number];
 
         /**
-         * This event is fired when removeAt() is called. The event passes the index that was passed to removeAt() and
-         * the element that was removed from the array.
+         * This event is fired when {@link MVCArray#removeAt removeAt}() is called. The event passes the index that was
+         * passed to {@link MVCArray#removeAt removeAt}() and the element that was removed from the array.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.remove_at Maps JavaScript API}
          */
         remove_at: [number, T];
 
         /**
-         * This event is fired when setAt() is called. The event passes the index that was passed to setAt() and the
-         * element that was previously in the array at that index.
+         * This event is fired when {@link MVCArray#setAt setAt}() is called. The event passes the index that was passed
+         * to {@link MVCArray#setAt setAt}() and the element that was previously in the array at that index.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.set_at Maps JavaScript API}
          */
         set_at: [number, T];
