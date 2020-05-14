@@ -97,7 +97,7 @@ declare namespace google.maps {
          * used with {@link google.maps.event.removeListener}.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.addListener Maps JavaScript API}
          */
-        addListener(eventName: string, handler: MVCEventHandler<this, any[]>): MapsEventListener;
+        addListener(eventName: string, handler: MVCEventHandler<this, unknown[]>): MapsEventListener;
 
         /**
          * Binds a View to a Model.
