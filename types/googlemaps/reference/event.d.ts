@@ -144,6 +144,28 @@ declare namespace google.maps {
         unbindAll(): void;
     }
 
+    interface MVCArrayHandlerMap<T> {
+        /**
+         * This event is fired when insertAt() is called. The event passes the index that was passed to insertAt().
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.insert_at Maps JavaScript API}
+         */
+        insert_at: [number];
+
+        /**
+         * This event is fired when removeAt() is called. The event passes the index that was passed to removeAt() and
+         * the element that was removed from the array.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.remove_at Maps JavaScript API}
+         */
+        remove_at: [number, T];
+
+        /**
+         * This event is fired when setAt() is called. The event passes the index that was passed to setAt() and the
+         * element that was previously in the array at that index.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.set_at Maps JavaScript API}
+         */
+        set_at: [number, T];
+    }
+
     /**
      * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray Maps JavaScript API}
      */
@@ -153,6 +175,19 @@ declare namespace google.maps {
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.constructor Maps JavaScript API}
          */
         constructor(array?: T[]);
+
+        /**
+         * @see {@link MapHandlerMap#insert_at insert_at} event
+         * @see {@link MapHandlerMap#remove_at remove_at} event
+         * @see {@link MapHandlerMap#set_at set_at} event
+         */
+        addListener<N extends keyof MapHandlerMap>(
+            eventName: N,
+            handler: MVCEventHandler<this, MapHandlerMap[N]>,
+        ): MapsEventListener;
+
+        /** @deprecated */
+        addListener(eventName: string, handler: MVCEventHandler<this, unknown[]>): MapsEventListener;
 
         /**
          * Removes all elements from the array.
