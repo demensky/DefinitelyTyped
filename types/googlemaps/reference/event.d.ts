@@ -105,8 +105,6 @@ declare namespace google.maps {
          */
         bindTo(key: string, target: MVCObject, targetKey?: string, noNotify?: boolean): void;
 
-        changed(key: string): void;
-
         /**
          * Gets a value.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.get Maps JavaScript API}
