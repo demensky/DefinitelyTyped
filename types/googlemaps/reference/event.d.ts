@@ -187,7 +187,6 @@ declare namespace google.maps {
             handler: MVCEventHandler<this, MapHandlerMap[N]>,
         ): MapsEventListener;
 
-        /** @deprecated */
         addListener(eventName: string, handler: MVCEventHandler<this, unknown[]>): MapsEventListener;
 
         /**
