@@ -19,7 +19,14 @@ declare namespace google.maps {
         static preventMapHitsFrom(element: Element): void;
     }
 
-    /** @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapPanes Maps JavaScript API} */
+    /**
+     * @see {@link MapPanes#mapPane Pane 0}
+     * @see {@link MapPanes#overlayLayer Pane 1}
+     * @see {@link MapPanes#markerLayer Pane 2}
+     * @see {@link MapPanes#overlayMouseTarget Pane 3}
+     * @see {@link MapPanes#floatPane Pane 4}
+     * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapPanes Maps JavaScript API}
+     */
     interface MapPanes {
         /**
          * This pane contains the info window. (Pane 4).
