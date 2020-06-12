@@ -64,12 +64,42 @@ declare namespace google.maps {
         readonly overlayMouseTarget: Element;
     }
 
-    // TODO: replace to interface https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection
-    class MapCanvasProjection extends MVCObject {
+    /**
+     * This object is made available to the {@link OverlayView} from within the draw method. It is not guaranteed to be
+     * initialized until draw is called.
+     * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection Maps JavaScript API}
+     */
+    interface MapCanvasProjection {
+        /**
+         * Computes the geographical coordinates from pixel coordinates in the map's container.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection.fromContainerPixelToLatLng Maps JavaScript API}
+         */
         fromContainerPixelToLatLng(pixel: Point, nowrap?: boolean): LatLng;
+
+        /**
+         * Computes the geographical coordinates from pixel coordinates in the div that holds the draggable map.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection.fromDivPixelToLatLng Maps JavaScript API}
+         */
         fromDivPixelToLatLng(pixel: Point, nowrap?: boolean): LatLng;
+
+        /**
+         * Computes the pixel coordinates of the given geographical location in the map's container element.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection.fromLatLngToContainerPixel Maps JavaScript API}
+         */
         fromLatLngToContainerPixel(latLng: LatLng): Point;
+
+        /**
+         * Computes the pixel coordinates of the given geographical location in the DOM element that holds the draggable
+         * map.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection.fromLatLngToDivPixel Maps JavaScript API}
+         */
         fromLatLngToDivPixel(latLng: LatLng): Point;
+
+        /**
+         * The width of the world in pixels in the current zoom level. For projections with a heading angle of either 90
+         * or 270 degrees, this corresponds to the pixel span in the Y-axis.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection.getWorldWidth Maps JavaScript API}
+         */
         getWorldWidth(): number;
     }
 }
