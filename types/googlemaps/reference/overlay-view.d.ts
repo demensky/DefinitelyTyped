@@ -12,19 +12,19 @@ declare namespace google.maps {
          */
         static preventMapHitsFrom(element: Element): void;
 
-        draw(): void;
+        draw?(): void;
 
-        getMap(): Map | StreetViewPanorama;
+        getMap(): Map | StreetViewPanorama | undefined;
 
-        getPanes(): MapPanes;
+        getPanes(): MapPanes | undefined;
 
-        getProjection(): MapCanvasProjection;
+        getProjection(): MapCanvasProjection | undefined;
 
-        onAdd(): void;
+        onAdd?(): void;
 
-        onRemove(): void;
+        onRemove?(): void;
 
-        setMap(map: Map | StreetViewPanorama | null): void;
+        setMap(map: Map | StreetViewPanorama | null | undefined): void;
     }
 
     /**
