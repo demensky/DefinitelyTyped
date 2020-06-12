@@ -2,24 +2,25 @@
     "compilerOptions": {
         "module": "commonjs",
         "lib": [
-            "es6",
-            "dom"
+            "es6"
         ],
         "noImplicitAny": true,
         "noImplicitThis": true,
-        "strictNullChecks": true,
         "strictFunctionTypes": true,
+        "strictNullChecks": true,
         "baseUrl": "../",
         "typeRoots": [
             "../"
         ],
         "types": [],
         "noEmit": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "paths": {
+            "@root/asn1": ["root__asn1"]
+        }
     },
     "files": [
         "index.d.ts",
-        "test/reference/max-zoom-tests.ts",
-        "googlemaps-tests.ts"
+        "root__asn1-tests.ts"
     ]
 }
