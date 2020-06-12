@@ -154,18 +154,24 @@ declare namespace google.maps {
         /**
          * Computes the geographical coordinates from pixel coordinates in the map's container.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection.fromContainerPixelToLatLng Maps JavaScript API}
+         * @see {@link fromLatLngToContainerPixel}
+         * @see {@link fromDivPixelToLatLng}
          */
         fromContainerPixelToLatLng(pixel: Point, nowrap?: boolean): LatLng;
 
         /**
          * Computes the geographical coordinates from pixel coordinates in the div that holds the draggable map.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection.fromDivPixelToLatLng Maps JavaScript API}
+         * @see {@link fromLatLngToDivPixel}
+         * @see {@link fromContainerPixelToLatLng}
          */
         fromDivPixelToLatLng(pixel: Point, nowrap?: boolean): LatLng;
 
         /**
          * Computes the pixel coordinates of the given geographical location in the map's container element.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection.fromLatLngToContainerPixel Maps JavaScript API}
+         * @see {@link fromContainerPixelToLatLng}
+         * @see {@link fromLatLngToDivPixel}
          */
         fromLatLngToContainerPixel(latLng: LatLng): Point;
 
@@ -173,6 +179,8 @@ declare namespace google.maps {
          * Computes the pixel coordinates of the given geographical location in the DOM element that holds the draggable
          * map.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapCanvasProjection.fromLatLngToDivPixel Maps JavaScript API}
+         * @see {@link fromDivPixelToLatLng}
+         * @see {@link fromLatLngToContainerPixel}
          */
         fromLatLngToDivPixel(latLng: LatLng): Point;
 
