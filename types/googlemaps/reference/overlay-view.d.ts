@@ -1,12 +1,5 @@
 declare namespace google.maps {
     class OverlayView extends MVCObject {
-        draw(): void;
-        getMap(): Map | StreetViewPanorama;
-        getPanes(): MapPanes;
-        getProjection(): MapCanvasProjection;
-        onAdd(): void;
-        onRemove(): void;
-        setMap(map: Map | StreetViewPanorama | null): void;
         /**
          * Stops click, tap, drag, and wheel events on the element from bubbling up to the map. Use this to prevent map dragging and zooming, as well as map "click" events.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#OverlayView.preventMapHitsAndGesturesFrom Maps JavaScript API}
@@ -17,6 +10,13 @@ declare namespace google.maps {
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/overlay-view#OverlayView.preventMapHitsFrom Maps JavaScript API}
          */
         static preventMapHitsFrom(element: Element): void;
+        draw(): void;
+        getMap(): Map | StreetViewPanorama;
+        getPanes(): MapPanes;
+        getProjection(): MapCanvasProjection;
+        onAdd(): void;
+        onRemove(): void;
+        setMap(map: Map | StreetViewPanorama | null): void;
     }
 
     /**
