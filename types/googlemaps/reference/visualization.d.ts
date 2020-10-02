@@ -30,7 +30,7 @@ declare namespace google.maps.visualization {
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/visualization#HeatmapLayer.setData Maps JavaScript API}
          * @see {@link getData}
          */
-        setData(data: MVCArray<LatLng | WeightedLocation> | LatLng[] | WeightedLocation[]): void;
+        setData(data: MVCArray<LatLng | WeightedLocation> | (LatLng | WeightedLocation)[]): void;
 
         /**
          * Renders the heatmap on the specified map. If map is set to null, the heatmap will be removed.
@@ -56,7 +56,7 @@ declare namespace google.maps.visualization {
          * The data points to display.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/visualization#HeatmapLayerOptions.data Maps JavaScript API}
          */
-        data: any;
+        data?: MVCArray<LatLng | WeightedLocation> | (LatLng | WeightedLocation)[];
 
         /**
          * Specifies whether heatmaps dissipate on zoom. By default, the radius of influence of a data point is
