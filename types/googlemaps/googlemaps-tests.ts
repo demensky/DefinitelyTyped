@@ -645,59 +645,6 @@ mvcArrayStr.push('y');
 mvcArrayStr.removeAt(0).toUpperCase();
 mvcArrayStr.setAt(0, 'z');
 
-/***** HeatMaps *****/
-
-let heatmap = new google.maps.visualization.HeatmapLayer({
-    data: [
-        new google.maps.LatLng(37.782551, -122.445368),
-        new google.maps.LatLng(37.782745, -122.444586),
-        new google.maps.LatLng({ lat: 37.782842, lng: -122.443688 }),
-    ],
-    map,
-});
-
-// setData Should Accept MVCArray<LatLng>
-heatmap.setData(
-    new google.maps.MVCArray<google.maps.LatLng>([
-        new google.maps.LatLng(37.782551, -122.445368),
-        new google.maps.LatLng(37.782745, -122.444586),
-        new google.maps.LatLng({ lat: 37.782842, lng: -122.443688 }),
-    ]),
-);
-
-// setData Should Accept MVCArray<WeightedLocation>
-heatmap.setData(
-    new google.maps.MVCArray<google.maps.visualization.WeightedLocation>([
-        { weight: 1, location: new google.maps.LatLng(37.782551, -122.445368) },
-        { weight: 2, location: new google.maps.LatLng(37.782745, -122.444586) },
-        { weight: 3, location: new google.maps.LatLng({ lat: 37.782842, lng: -122.443688 }) },
-    ]),
-);
-
-// setData Should Accept LatLng[]
-heatmap.setData([
-    new google.maps.LatLng(37.782551, -122.445368),
-    new google.maps.LatLng(37.782745, -122.444586),
-    new google.maps.LatLng({ lat: 37.782842, lng: -122.443688 }),
-]);
-
-// setData Should Accept WeightedLocation[]
-heatmap.setData([
-    { weight: 1, location: new google.maps.LatLng(37.782551, -122.445368) },
-    { weight: 2, location: new google.maps.LatLng({ lat: 37.782745, lng: -122.444586 }) },
-]);
-
-// setOptions should required data and accepted any HeatmapLayerOptions
-heatmap.setOptions({
-    data: [
-        new google.maps.LatLng(37.782551, -122.445368),
-        new google.maps.LatLng(37.782745, -122.444586),
-        new google.maps.LatLng({ lat: 37.782842, lng: -122.443688 }),
-    ],
-    dissipating: true,
-    map,
-    opacity: 8,
-});
 
 /***** google.maps.places.PlacesService *****/
 let service = new google.maps.places.PlacesService(new HTMLDivElement());
