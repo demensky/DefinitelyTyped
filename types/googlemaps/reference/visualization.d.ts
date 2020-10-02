@@ -16,12 +16,14 @@ declare namespace google.maps.visualization {
          * Returns the data points currently displayed by this heatmap.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/visualization#HeatmapLayer.getData Maps JavaScript API}
          * @see {@link setData}
+         * @see {@link HeatmapLayerOptions#data}
          */
         getData(): MVCArray<LatLng | WeightedLocation>;
 
         /**
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/visualization#HeatmapLayer.getMap Maps JavaScript API}
          * @see {@link setMap}
+         * @see {@link HeatmapLayerOptions#map}
          */
         getMap(): Map;
 
@@ -29,6 +31,7 @@ declare namespace google.maps.visualization {
          * Sets the data points to be displayed by this heatmap.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/visualization#HeatmapLayer.setData Maps JavaScript API}
          * @see {@link getData}
+         * @see {@link HeatmapLayerOptions#data}
          */
         setData(data: MVCArray<LatLng | WeightedLocation> | (LatLng | WeightedLocation)[]): void;
 
@@ -36,6 +39,7 @@ declare namespace google.maps.visualization {
          * Renders the heatmap on the specified map. If map is set to null, the heatmap will be removed.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/visualization#HeatmapLayer.setMap Maps JavaScript API}
          * @see {@link getMap}
+         * @see {@link HeatmapLayerOptions#map}
          */
         setMap(map: Map | null): void;
 
@@ -55,6 +59,8 @@ declare namespace google.maps.visualization {
         /**
          * The data points to display.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/visualization#HeatmapLayerOptions.data Maps JavaScript API}
+         * @see {@link HeatmapLayer#getData}
+         * @see {@link HeatmapLayer#setData}
          */
         data?: MVCArray<LatLng | WeightedLocation> | (LatLng | WeightedLocation)[];
 
@@ -76,6 +82,8 @@ declare namespace google.maps.visualization {
         /**
          * The map on which to display the layer.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/visualization#HeatmapLayerOptions.map Maps JavaScript API}
+         * @see {@link HeatmapLayer#getMap}
+         * @see {@link HeatmapLayer#setMap}
          */
         map?: Map;
 
