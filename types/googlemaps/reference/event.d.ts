@@ -71,49 +71,67 @@ declare namespace google.maps {
         remove(): void;
     }
 
+    /**
+     * The `MVCObject` constructor is guaranteed to be an empty function, and so you may inherit from `MVCObject` by
+     * writing `MySubclass.prototype = new google.maps.MVCObject();`. Unless otherwise noted, this is not true of other
+     * classes in the API, and inheriting from other classes in the API is not supported.
+     * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject Maps JavaScript API}
+     */
     class MVCObject {
         /**
-         * The MVCObject constructor is guaranteed to be an empty function, and so
-         * you may inherit from MVCObject by simply writing MySubclass.prototype =
-         * new google.maps.MVCObject();. Unless otherwise noted, this is not true of
-         * other classes in the API, and inheriting from other classes in the API is
-         * not supported.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.constructor Maps JavaScript API}
          */
         constructor();
 
         /**
-         * Adds the given listener function to the given event name. Returns an
-         * identifier for this listener that can be used with
-         * google.maps.event.removeListener.
+         * Adds the given listener function to the given event name. Returns an identifier for this listener that can be
+         * used with {@link google.maps.event.removeListener}.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.addListener Maps JavaScript API}
          */
         addListener(eventName: string, handler: (this: this, ...args: any[]) => void): MapsEventListener;
 
-        /** Binds a View to a Model. */
+        /**
+         * Binds a View to a Model.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.bindTo Maps JavaScript API}
+         */
         bindTo(key: string, target: MVCObject, targetKey?: string, noNotify?: boolean): void;
 
-        /** Gets a value. */
+        /**
+         * Gets a value.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.get Maps JavaScript API}
+         */
         get(key: string): any;
 
         /**
-         * Notify all observers of a change on this property. This notifies both
-         * objects that are bound to the object's property as well as the object
-         * that it is bound to.
+         * Notify all observers of a change on this property. This notifies both objects that are bound to the object's
+         * property as well as the object that it is bound to.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.notify Maps JavaScript API}
          */
         notify(key: string): void;
 
-        /** Sets a value. */
+        /**
+         * Sets a value.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.set Maps JavaScript API}
+         */
         set(key: string, value: any): void;
 
-        /** Sets a collection of key-value pairs. */
+        /**
+         * Sets a collection of key-value pairs.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.setValues Maps JavaScript API}
+         */
         setValues(values: any): void;
 
         /**
-         * Removes a binding. Unbinding will set the unbound property to the current
-         * value. The object will not be notified, as the value has not changed.
+         * Removes a binding. Unbinding will set the unbound property to the current value. The object will not be
+         * notified, as the value has not changed.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.unbind Maps JavaScript API}
          */
         unbind(key: string): void;
 
-        /** Removes all bindings. */
+        /**
+         * Removes all bindings.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.unbindAll Maps JavaScript API}
+         */
         unbindAll(): void;
     }
 
