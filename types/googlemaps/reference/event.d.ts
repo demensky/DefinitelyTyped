@@ -71,13 +71,19 @@ declare namespace google.maps {
         remove(): void;
     }
 
+    type ValueEventName<T extends string> = `${Lowercase<T>}_changed`;
+
+    interface EventsArguments {
+        [eventName: string]: readonly unknown[];
+    }
+
     /**
      * The `MVCObject` constructor is guaranteed to be an empty function, and so you may inherit from `MVCObject` by
      * writing `MySubclass.prototype = new google.maps.MVCObject();`. Unless otherwise noted, this is not true of other
      * classes in the API, and inheriting from other classes in the API is not supported.
      * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject Maps JavaScript API}
      */
-    class MVCObject<T extends object = any> {
+    class MVCObject<T extends object = any, E extends EventsArguments = {}> {
         /**
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.constructor Maps JavaScript API}
          */
@@ -88,7 +94,13 @@ declare namespace google.maps {
          * used with {@link google.maps.event.removeListener}.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.addListener Maps JavaScript API}
          */
-        addListener(eventName: string, handler: (this: this, ...args: any[]) => void): MapsEventListener;
+        addListener<K extends keyof T & string>(eventName: ValueEventName<K>, handler: (this: this) => void): MapsEventListener;
+        /**
+         * Adds the given listener function to the given event name. Returns an identifier for this listener that can be
+         * used with {@link google.maps.event.removeListener}.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.addListener Maps JavaScript API}
+         */
+        addListener<K extends keyof E & string>(eventName: K, handler: (this: this, ...args: E[K]) => void): MapsEventListener;
 
         /**
          * Binds a View to a Model.
@@ -110,7 +122,7 @@ declare namespace google.maps {
          */
         bindTo<T2 extends object, K extends keyof (T & T2)>(
             key: K,
-            target: MVCObject,
+            target: MVCObject<T2>,
             targetKey?: undefined,
             noNotify?: boolean,
         ): void;
