@@ -16,6 +16,11 @@ mvcArray.addListener('set_at', (index, previous) => {
     index; // $ExpectType number
     previous; // $ExpectType string
 });
+mvcArray.addListener('length_changed', () => {});
+mvcArray.addListener('length_changed', value => {}); // $ExpectError
+mvcArray.addListener('aabbcc', value => {
+    value; // $ExpectType unknown
+});
 
 mvcArray.clear();
 
