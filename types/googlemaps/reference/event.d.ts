@@ -93,12 +93,15 @@ declare namespace google.maps {
         /**
          * Binds a View to a Model.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.bindTo Maps JavaScript API}
+         * @see {@link unbind}
+         * @see {@link unbindAll}
          */
         bindTo(key: string, target: MVCObject, targetKey?: string, noNotify?: boolean): void;
 
         /**
          * Gets a value.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.get Maps JavaScript API}
+         * @see {@link set}
          */
         get(key: string): any;
 
@@ -106,18 +109,23 @@ declare namespace google.maps {
          * Notify all observers of a change on this property. This notifies both objects that are bound to the object's
          * property as well as the object that it is bound to.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.notify Maps JavaScript API}
+         * @see {@link set}
          */
         notify(key: string): void;
 
         /**
          * Sets a value.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.set Maps JavaScript API}
+         * @see {@link get}
+         * @see {@link notify}
+         * @see {@link setValues}
          */
         set(key: string, value: any): void;
 
         /**
          * Sets a collection of key-value pairs.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.setValues Maps JavaScript API}
+         * @see {@link set}
          */
         setValues(values: any): void;
 
@@ -125,12 +133,15 @@ declare namespace google.maps {
          * Removes a binding. Unbinding will set the unbound property to the current value. The object will not be
          * notified, as the value has not changed.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.unbind Maps JavaScript API}
+         * @see {@link bindTo}
          */
         unbind(key: string): void;
 
         /**
          * Removes all bindings.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.unbindAll Maps JavaScript API}
+         * @see {@link bindTo}
+         * @see {@link unbind}
          */
         unbindAll(): void;
     }
