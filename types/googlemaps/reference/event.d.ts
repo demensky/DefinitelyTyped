@@ -77,7 +77,7 @@ declare namespace google.maps {
      * classes in the API, and inheriting from other classes in the API is not supported.
      * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject Maps JavaScript API}
      */
-    class MVCObject {
+    class MVCObject<T extends object = any> {
         /**
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.constructor Maps JavaScript API}
          */
@@ -96,14 +96,31 @@ declare namespace google.maps {
          * @see {@link unbind}
          * @see {@link unbindAll}
          */
-        bindTo(key: string, target: MVCObject, targetKey?: string, noNotify?: boolean): void;
+        bindTo<T2 extends object, K extends keyof T, K2 extends T2>(
+            key: K,
+            target: MVCObject<T2>,
+            targetKey: K,
+            noNotify?: boolean,
+        ): void;
+        /**
+         * Binds a View to a Model.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.bindTo Maps JavaScript API}
+         * @see {@link unbind}
+         * @see {@link unbindAll}
+         */
+        bindTo<T2 extends object, K extends keyof (T & T2)>(
+            key: K,
+            target: MVCObject,
+            targetKey?: undefined,
+            noNotify?: boolean,
+        ): void;
 
         /**
          * Gets a value.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.get Maps JavaScript API}
          * @see {@link set}
          */
-        get(key: string): any;
+        get<K extends keyof T>(key: K): T[K];
 
         /**
          * Notify all observers of a change on this property. This notifies both objects that are bound to the object's
@@ -111,7 +128,7 @@ declare namespace google.maps {
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.notify Maps JavaScript API}
          * @see {@link set}
          */
-        notify(key: string): void;
+        notify(key: keyof T): void;
 
         /**
          * Sets a value.
@@ -120,14 +137,14 @@ declare namespace google.maps {
          * @see {@link notify}
          * @see {@link setValues}
          */
-        set(key: string, value: any): void;
+        set<K extends keyof T>(key: K, value: T[K]): void;
 
         /**
          * Sets a collection of key-value pairs.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.setValues Maps JavaScript API}
          * @see {@link set}
          */
-        setValues(values: any): void;
+        setValues(values: Partial<T>): void;
 
         /**
          * Removes a binding. Unbinding will set the unbound property to the current value. The object will not be
@@ -135,7 +152,7 @@ declare namespace google.maps {
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCObject.unbind Maps JavaScript API}
          * @see {@link bindTo}
          */
-        unbind(key: string): void;
+        unbind(key: keyof T): void;
 
         /**
          * Removes all bindings.
