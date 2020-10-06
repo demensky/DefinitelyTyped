@@ -91,8 +91,6 @@ declare namespace google.maps {
         /** Binds a View to a Model. */
         bindTo(key: string, target: MVCObject, targetKey?: string, noNotify?: boolean): void;
 
-        changed(key: string): void;
-
         /** Gets a value. */
         get(key: string): any;
 
