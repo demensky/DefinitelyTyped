@@ -163,8 +163,12 @@ declare namespace google.maps {
         unbindAll(): void;
     }
 
+    interface MVCObjectValues {
+        length: number;
+    }
+
     /** This class extends MVCObject. */
-    class MVCArray<T> extends MVCObject {
+    class MVCArray<T> extends MVCObject<MVCObjectValues> {
         /** A mutable MVC Array. */
         constructor(array?: T[]);
 
