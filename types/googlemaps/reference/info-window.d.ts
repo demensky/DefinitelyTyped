@@ -1,12 +1,21 @@
 declare namespace google.maps {
-    interface InfoWindowHandlerMap<T extends InfoWindow> {
+    interface InfoWindowHandlerMap extends EventsArguments {
         /**
          * This event is fired when the close button was clicked.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindow.closeclick Maps JavaScript API}
          * @see {@link InfoWindow#close}
          */
-        closeclick: (this: T) => void;
+        closeclick: [];
 
+        /**
+         * This event is fired when the `<div>` containing the {@link InfoWindow}'s content is attached to the DOM. You
+         * may wish to monitor this event if you are building out your info window content dynamically.
+         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindow.domready Maps JavaScript API}
+         */
+        domready: [];
+    }
+
+    interface InfoWindowValues {
         /**
          * This event is fired when the content property changes.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindow.content_changed Maps JavaScript API}
@@ -14,14 +23,7 @@ declare namespace google.maps {
          * @see {@link InfoWindow#getContent}
          * @see {@link InfoWindow#setContent}
          */
-        content_changed: (this: T) => void;
-
-        /**
-         * This event is fired when the `<div>` containing the {@link InfoWindow}'s content is attached to the DOM. You
-         * may wish to monitor this event if you are building out your info window content dynamically.
-         * @see {@link https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindow.domready Maps JavaScript API}
-         */
-        domready: (this: T) => void;
+        content: number;
 
         /**
          * This event is fired when the position property changes.
@@ -30,7 +32,7 @@ declare namespace google.maps {
          * @see {@link InfoWindow#getPosition}
          * @see {@link InfoWindow#setPosition}
          */
-        position_changed: (this: T) => void;
+        position: LatLng;
 
         /**
          * This event is fired when the InfoWindow's zIndex changes.
@@ -39,7 +41,7 @@ declare namespace google.maps {
          * @see {@link InfoWindow#getZIndex}
          * @see {@link InfoWindow#setZIndex}
          */
-        zindex_changed: (this: T) => void;
+        zindex: number;
     }
 
     /**
@@ -47,7 +49,7 @@ declare namespace google.maps {
      * This class extends MVCObject.
      * @see {@link https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindow Maps JavaScript API}
      */
-    class InfoWindow extends MVCObject {
+    class InfoWindow extends MVCObject<InfoWindowValues, InfoWindowHandlerMap> {
         /**
          * Creates an info window with the given options. An {@link InfoWindow} can be placed on a map at a particular
          * position or above a marker, depending on what is specified in the options. Unless auto-pan is disabled, an
@@ -57,20 +59,6 @@ declare namespace google.maps {
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/info-window#InfoWindow.constructor Maps JavaScript API}
          */
         constructor(opts?: InfoWindowOptions);
-
-        /**
-         * @see {@link InfoWindowHandlerMap#closeclick closeclick} event
-         * @see {@link InfoWindowHandlerMap#content_changed content_changed} event
-         * @see {@link InfoWindowHandlerMap#domready domready} event
-         * @see {@link InfoWindowHandlerMap#position_changed position_changed} event
-         * @see {@link InfoWindowHandlerMap#zindex_changed zindex_changed} event
-         */
-        addListener<N extends keyof InfoWindowHandlerMap<this>>(
-            eventName: N,
-            handler: InfoWindowHandlerMap<this>[N],
-        ): MapsEventListener;
-
-        addListener(eventName: string, handler: (this: this, ...args: unknown[]) => void): MapsEventListener;
 
         /**
          * Closes this {@link InfoWindow} by removing it from the DOM structure.
