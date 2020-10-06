@@ -179,51 +179,38 @@ declare namespace google.maps {
         length: number;
     }
 
-    interface MVCArrayHandlerMap<C extends MVCArray<T>, T> {
+    interface MVCArrayHandlerMap<T> extends EventsArguments {
         /**
          * This event is fired when {@link MVCArray.insertAt insertAt}() is called. The event passes the index that was
          * passed to {@link MVCArray.insertAt insertAt}().
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.insert_at Maps JavaScript API}
          */
-        insert_at: (this: C, index: number) => void;
+        insert_at: [index: number];
 
         /**
          * This event is fired when {@link MVCArray.removeAt removeAt}() is called. The event passes the index that was
          * passed to {@link MVCArray.removeAt removeAt}() and the element that was removed from the array.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.remove_at Maps JavaScript API}
          */
-        remove_at: (this: C, index: number, removed: T) => void;
+        remove_at: [index: number, removed: T];
 
         /**
          * This event is fired when {@link MVCArray.setAt setAt}() is called. The event passes the index that was passed
          * to {@link MVCArray.setAt setAt}() and the element that was previously in the array at that index.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.set_at Maps JavaScript API}
          */
-        set_at: (this: C, index: number, previous: T) => void;
+        set_at: [index: number, previous: T];
     }
 
     /**
      * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray Maps JavaScript API}
      */
-    class MVCArray<T> extends MVCObject<MVCObjectValues> {
+    class MVCArray<T> extends MVCObject<MVCObjectValues, MVCArrayHandlerMap<T>> {
         /**
          * A mutable MVC Array.
          * @see {@link https://developers.google.com/maps/documentation/javascript/reference/event#MVCArray.constructor Maps JavaScript API}
          */
         constructor(array?: T[]);
-
-        /**
-         * @see {@link MVCArrayHandlerMap#insert_at insert_at} event
-         * @see {@link MVCArrayHandlerMap#remove_at remove_at} event
-         * @see {@link MVCArrayHandlerMap#set_at set_at} event
-         */
-        addListener<N extends keyof MVCArrayHandlerMap<this, T>>(
-            eventName: N,
-            handler: MVCArrayHandlerMap<this, T>[N],
-        ): MapsEventListener;
-
-        /** @deprecated */
-        addListener(eventName: string, handler: (this: this, ...args: any[]) => void): MapsEventListener;
 
         /**
          * Removes all elements from the array.
